@@ -1,4 +1,18 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![Street Exchange Icon](images/icon.svg)
+
+# Street Exchange
+
+Open-source market research powered by Yahoo Finance.
+
+## LEGAL DISCLAIMER
+
+The "Street Finance" project is an open-source tool utilizing publicly available APIs from Yahoo. This project is designed solely for research and educational purposes and does not offer financial, investment, or trading advice. Users should be aware that the data and information presented by the project may not always be current or accurate.
+
+All trademarks, including but not limited to Yahoo! and Yahoo! finance, are registered trademarks of Yahoo, Inc. Their use in the "Street Finance" project is strictly for reference, and the project is neither affiliated with nor endorsed by Yahoo, Inc.
+
+Users are advised to exercise caution, conduct independent research, and consult with financial professionals before making any financial decisions based on the project's information. The developers and contributors to the project disclaim any liability for losses or damages resulting from its use.
+
+Users are responsible for complying with relevant laws and regulations
 
 ## Getting Started
 
@@ -12,23 +26,11 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser and get started with your research on stocks.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Locating the Stock Symbol (Mandatory for Search)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Navigate to the website [finance.yahoo.com](https://finance.yahoo.com/).
+2. Utilize the search bar with the autocomplete feature to find your stock.
+   ![Yahoo search image](images/yahoo-search.png)
+3. Identify the stock symbol, located in the leftmost column of the autocomplete modal. (Ex. **NVDA**)

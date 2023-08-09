@@ -1,0 +1,36 @@
+## Available Modules
+
+assetProfile
+summaryProfile
+summaryDetail
+esgScores
+price
+incomeStatementHistory
+incomeStatementHistoryQuarterly
+balanceSheetHistory
+balanceSheetHistoryQuarterly
+cashflowStatementHistory
+cashflowStatementHistoryQuarterly
+defaultKeyStatistics
+financialData
+calendarEvents
+secFilings
+recommendationTrend
+upgradeDowngradeHistory
+institutionOwnership
+fundOwnership
+majorDirectHolders
+majorHoldersBreakdown
+insiderTransactions
+insiderHolders
+netSharePurchaseActivity
+earnings
+earningsHistory
+earningsTrend
+industryTrend
+indexTrend
+sectorTrend
+
+## Options API
+
+https://query1.finance.yahoo.com/v7/finance/options/AAPL
