@@ -1,4 +1,5 @@
 import HighChartsWidget from "./HighChartsWidget";
+import { API_URL } from "../utils/constants";
 
 interface StockChartProps {
   symbol: string;
@@ -6,7 +7,7 @@ interface StockChartProps {
 }
 
 const getStockChartData = async (ticker: string) => {
-  const endpoint = new URL("http://localhost:3000/api/stockchartdata/");
+  const endpoint = new URL(`${API_URL()}/api/stockchartdata/`);
   endpoint.searchParams.set("ticker", ticker);
   const request = new Request(endpoint);
   const res = await fetch(request, { cache: "no-store" });

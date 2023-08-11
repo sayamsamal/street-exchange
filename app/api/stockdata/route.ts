@@ -7,7 +7,11 @@ const CRUMB = process.env.CRUMB || "";
 const USER_AGENT =
   "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36";
 
-async function getStockData(symbols: string[], cookie: string, crumb: string) {
+async function getStockData(
+  symbols: string[],
+  cookie: string = COOKIE,
+  crumb: string = CRUMB
+) {
   const endpoint = new URL("/v7/finance/quote", QUERY2_BASE_URL);
   endpoint.searchParams.set("symbols", symbols.join(","));
   endpoint.searchParams.set("crumb", crumb);

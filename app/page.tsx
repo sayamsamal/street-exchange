@@ -4,6 +4,7 @@ import StockChart from "./components/StockChart";
 import StockChartLoader from "./loaders/StockChartLoader";
 import StockSearch from "./components/StockSearch";
 import StockPriceAction from "./components/StockPriceAction";
+import { API_URL } from "./utils/constants";
 
 const StockNotFound = () => {
   return (
@@ -17,10 +18,9 @@ const StockNotFound = () => {
 };
 
 const getStockData = async (ticker: string) => {
-  const getData = await fetch(
-    `http://localhost:3000/api/stockdata?ticker=${ticker}`,
-    { cache: "no-store" }
-  );
+  const getData = await fetch(`${API_URL()}/api/stockdata?ticker=${ticker}`, {
+    cache: "no-store",
+  });
   const data = await getData.json();
   return data.data[0];
 };
