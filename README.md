@@ -4,6 +4,8 @@
 
 Open-source market research powered by Yahoo Finance.
 
+Live Demo: [https://street-exchange.vercel.app/](https://street-exchange.vercel.app/)
+
 ## LEGAL DISCLAIMER
 
 The "Street Finance" project is an open-source tool utilizing publicly available APIs from Yahoo. This project is designed solely for research and educational purposes and does not offer financial, investment, or trading advice. Users should be aware that the data and information presented by the project may not always be current or accurate.
