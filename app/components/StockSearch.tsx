@@ -1,32 +1,66 @@
 "use client";
 
-import { usePathname, useSearchParams, useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
+import { useState } from "react";
 import styles from "./Spinner.module.css";
+import Link from "next/link";
+
+interface autoCompleteProps {
+  exchange: string;
+  symbol: string;
+  longname: string;
+}
 
 const StockSearch = () => {
-  let { replace } = useRouter();
-  let pathname = usePathname();
+  const [acQuotes, setAcQuotes] = useState<autoCompleteProps[]>([]);
+  const [isSearchModal, setIsSearchModal] = useState<boolean>(false);
+  let [isLoading, setLoading] = useState<boolean>(false);
 
-  let [searchVal, setSearchVal] = useState("");
-  let [isPending, startTransition] = useTransition();
-  const searchParams = useSearchParams();
-
-  function handleSearch(event: any) {
-    event.preventDefault();
-    const params = new URLSearchParams(Array.from(searchParams.entries()));
-    if (searchVal) {
-      params.set("ticker", searchVal);
+  const handleAutocomplete = (value: any) => {
+    if (value == "") {
+      setIsSearchModal(false);
+      setAcQuotes([]);
+      return;
     }
+    setLoading(true);
+    fetch(`/api/autocomplete?query=${value}`).then((data) =>
+      data.json().then((parsed) => {
+        if (parsed.count > 0) {
+          setIsSearchModal(true);
+          setAcQuotes(parsed.quotes);
+          setLoading(false);
+        }
+      })
+    );
+  };
 
-    startTransition(() => {
-      replace(`${pathname}?${params.toString()}`);
-    });
-  }
+  const AutoCompleteCard = (props: autoCompleteProps) => {
+    return (
+      <Link
+        href={{
+          pathname: "/",
+          query: { ticker: props.symbol },
+        }}
+        onClick={() => setIsSearchModal(false)}
+      >
+        <div className="flex justify-between bg-gray-600 px-5 py-3 rounded-lg gap-10">
+          <div className="flex gap-10">
+            <div className="min-w-[6rem]">{props.symbol}</div>
+            <div>{props.longname}</div>
+          </div>
+          <div>{props.exchange}</div>
+        </div>
+      </Link>
+    );
+  };
 
   return (
-    <div>
-      <form className="flex items-center mb-10" onSubmit={handleSearch}>
+    <div className="flex flex-col mb-10">
+      <form
+        className="flex items-center z-20"
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <label htmlFor="stock-search" className="sr-only">
           Search
         </label>
@@ -51,14 +85,13 @@ const StockSearch = () => {
           <input
             type="text"
             id="stock-search"
-            className="text-sm rounded-lg w-full pl-10 p-2.5 bg-gray-700 focus:outline-none focus:ring-1 focus:ring-sky-500"
+            className="text-sm rounded-lg w-full px-10 p-2.5 bg-gray-700 focus:outline-none focus:ring-1 focus:ring-sky-500"
             placeholder="Start typing for stocks"
-            value={searchVal}
-            onChange={(e) => {
-              setSearchVal(e.target.value);
+            onInput={(e) => {
+              handleAutocomplete(e.currentTarget.value);
             }}
           />
-          {isPending && (
+          {isLoading && (
             <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
               <svg
                 className="w-5 h-5 fill-slate-100"
@@ -79,6 +112,26 @@ const StockSearch = () => {
           )}
         </div>
       </form>
+      {isSearchModal && (
+        <div>
+          <div
+            className="absolute min-h-full min-w-full top-0 left-0 bg-slate-900 z-10 opacity-40"
+            onClick={() => setIsSearchModal(false)}
+          ></div>
+          <div className="relative z-20">
+            <div className="flex mt-5 flex-col gap-2.5 bg-gray-700 text-sm rounded-lg w-full p-2.5 absolute">
+              {acQuotes.map((acQuote) => (
+                <AutoCompleteCard
+                  key={acQuote.symbol}
+                  exchange={acQuote.exchange}
+                  symbol={acQuote.symbol}
+                  longname={acQuote.longname}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
