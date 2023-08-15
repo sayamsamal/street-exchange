@@ -3,14 +3,32 @@
 import { useState } from "react";
 import Link from "next/link";
 
-interface autoCompleteProps {
+interface autoCompleteCardProps {
   exchange: string;
   symbol: string;
   longname: string;
   setIsSearchModal: Function;
 }
 
-const AutoCompleteCard = (props: autoCompleteProps) => {
+interface Quote {
+  exchange: string;
+  shortname: string;
+  quoteType: string;
+  symbol: string;
+  index: string;
+  score: number;
+  typeDisp: string;
+  exchDisp: string;
+  isYahooFinance: boolean;
+  longname?: string;
+  logoUrl?: string;
+  sector?: string;
+  sectorDisp?: string;
+  industry?: string;
+  industryDisp?: string;
+}
+
+const AutoCompleteCard = (props: autoCompleteCardProps) => {
   return (
     <Link
       href={{
@@ -31,7 +49,7 @@ const AutoCompleteCard = (props: autoCompleteProps) => {
 };
 
 const StockSearch = () => {
-  const [acQuotes, setAcQuotes] = useState<autoCompleteProps[]>([]);
+  const [acQuotes, setAcQuotes] = useState<Quote[]>([]);
   const [isSearchModal, setIsSearchModal] = useState<boolean>(false);
   let [isLoading, setLoading] = useState<boolean>(false);
 
@@ -122,7 +140,7 @@ const StockSearch = () => {
                   key={acQuote.symbol}
                   exchange={acQuote.exchange}
                   symbol={acQuote.symbol}
-                  longname={acQuote.longname}
+                  longname={acQuote.longname || ""}
                   setIsSearchModal={setIsSearchModal}
                 />
               ))}
