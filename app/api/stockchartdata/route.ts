@@ -1,13 +1,12 @@
 import { NextResponse } from "next/server";
-
-const QUERY2_BASE_URL = "https://query2.finance.yahoo.com";
+import { YAHOO_BASEURL } from "@/app/utils/constants";
 
 const getStockChartData = async (
   ticker: string,
   interval: string = "1d",
   range: string = "ytd"
 ) => {
-  const endpoint = new URL(`/v8/finance/chart/${ticker}`, QUERY2_BASE_URL);
+  const endpoint = new URL(`/v8/finance/chart/${ticker}`, YAHOO_BASEURL);
   endpoint.searchParams.set("interval", interval);
   endpoint.searchParams.set("range", range);
   const request = new Request(endpoint);

@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-
-const QUERY2_BASE_URL = "https://query2.finance.yahoo.com";
+import { YAHOO_BASEURL } from "@/app/utils/constants";
 
 async function getStockAutocomplete(
   query: string,
@@ -8,7 +7,7 @@ async function getStockAutocomplete(
   newsCount: number = 0,
   enableLogoUrl: boolean = true
 ) {
-  const endpoint = new URL("/v1/finance/search", QUERY2_BASE_URL);
+  const endpoint = new URL("/v1/finance/search", YAHOO_BASEURL);
   endpoint.searchParams.set("q", query);
   endpoint.searchParams.set("quotesCount", quotesCount.toString());
   endpoint.searchParams.set("newsCount", newsCount.toString());

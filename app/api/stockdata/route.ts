@@ -1,18 +1,12 @@
 import { NextResponse } from "next/server";
-
-const QUERY2_BASE_URL = "https://query2.finance.yahoo.com";
-
-const COOKIE = process.env.COOKIE || "";
-const CRUMB = process.env.CRUMB || "";
-const USER_AGENT =
-  "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36";
+import { YAHOO_BASEURL, COOKIE, CRUMB } from "@/app/utils/constants";
 
 async function getStockData(
   symbols: string[],
   cookie: string = COOKIE,
   crumb: string = CRUMB
 ) {
-  const endpoint = new URL("/v7/finance/quote", QUERY2_BASE_URL);
+  const endpoint = new URL("/v7/finance/quote", YAHOO_BASEURL);
   endpoint.searchParams.set("symbols", symbols.join(","));
   endpoint.searchParams.set("crumb", crumb);
   endpoint.searchParams.set("formatted", "true");
