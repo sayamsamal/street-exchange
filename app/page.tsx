@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 
 import StockChart from "./components/StockChart";
-import StockChartLoader from "./loaders/StockChartLoader";
+import StockChartLoader from "./components/StockChartLoader";
 import StockSearch from "./components/StockSearch";
 import StockPriceAction from "./components/StockPriceAction";
 import { API_URL } from "./utils/constants";
