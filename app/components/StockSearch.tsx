@@ -72,7 +72,7 @@ const StockSearch = () => {
   };
 
   return (
-    <div className="flex flex-col mb-10">
+    <div className="flex flex-col mb-8">
       <form
         className="flex items-center z-20"
         onSubmit={(e) => {
