@@ -7,7 +7,28 @@ interface autoCompleteProps {
   exchange: string;
   symbol: string;
   longname: string;
+  setIsSearchModal: Function;
 }
+
+const AutoCompleteCard = (props: autoCompleteProps) => {
+  return (
+    <Link
+      href={{
+        pathname: "/",
+        query: { ticker: props.symbol },
+      }}
+      onClick={() => props.setIsSearchModal(false)}
+    >
+      <div className="flex justify-between bg-gray-600 px-5 py-3 rounded-lg gap-10">
+        <div className="flex gap-10">
+          <div className="min-w-[6rem]">{props.symbol}</div>
+          <div>{props.longname}</div>
+        </div>
+        <div>{props.exchange}</div>
+      </div>
+    </Link>
+  );
+};
 
 const StockSearch = () => {
   const [acQuotes, setAcQuotes] = useState<autoCompleteProps[]>([]);
@@ -29,26 +50,6 @@ const StockSearch = () => {
           setLoading(false);
         }
       })
-    );
-  };
-
-  const AutoCompleteCard = (props: autoCompleteProps) => {
-    return (
-      <Link
-        href={{
-          pathname: "/",
-          query: { ticker: props.symbol },
-        }}
-        onClick={() => setIsSearchModal(false)}
-      >
-        <div className="flex justify-between bg-gray-600 px-5 py-3 rounded-lg gap-10">
-          <div className="flex gap-10">
-            <div className="min-w-[6rem]">{props.symbol}</div>
-            <div>{props.longname}</div>
-          </div>
-          <div>{props.exchange}</div>
-        </div>
-      </Link>
     );
   };
 
@@ -122,6 +123,7 @@ const StockSearch = () => {
                   exchange={acQuote.exchange}
                   symbol={acQuote.symbol}
                   longname={acQuote.longname}
+                  setIsSearchModal={setIsSearchModal}
                 />
               ))}
             </div>
