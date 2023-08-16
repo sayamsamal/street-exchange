@@ -67,7 +67,7 @@ const StockSearch = () => {
           setAcQuotes(parsed.quotes);
           setLoading(false);
         }
-      }),
+      })
     );
   };
 
