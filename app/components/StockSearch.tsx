@@ -37,7 +37,7 @@ const AutoCompleteCard = (props: autoCompleteCardProps) => {
       }}
       onClick={() => props.setIsSearchModal(false)}
     >
-      <div className="flex justify-between bg-gray-600 px-5 py-3 rounded-lg gap-10">
+      <div className="flex justify-between gap-10 rounded-lg bg-gray-600 px-5 py-3">
         <div className="flex gap-10">
           <div className="min-w-[6rem]">{props.symbol}</div>
           <div>{props.longname}</div>
@@ -67,14 +67,14 @@ const StockSearch = () => {
           setAcQuotes(parsed.quotes);
           setLoading(false);
         }
-      })
+      }),
     );
   };
 
   return (
-    <div className="flex flex-col mb-8">
+    <div className="mb-8 flex flex-col">
       <form
-        className="flex items-center z-20"
+        className="z-20 flex items-center"
         onSubmit={(e) => {
           e.preventDefault();
         }}
@@ -83,9 +83,9 @@ const StockSearch = () => {
           Search
         </label>
         <div className="relative w-full">
-          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
             <svg
-              className="w-4 h-4"
+              className="h-4 w-4"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -103,16 +103,16 @@ const StockSearch = () => {
           <input
             type="text"
             id="stock-search"
-            className="text-sm rounded-lg w-full px-10 p-2.5 bg-gray-700 focus:outline-none focus:ring-1 focus:ring-sky-500"
+            className="w-full rounded-lg bg-gray-700 p-2.5 px-10 text-sm focus:outline-none focus:ring-1 focus:ring-sky-500"
             placeholder="Start typing for stocks"
             onInput={(e) => {
               handleAutocomplete(e.currentTarget.value);
             }}
           />
           {isLoading && (
-            <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
               <svg
-                className="w-5 h-5 fill-slate-100 animate-spin"
+                className="h-5 w-5 animate-spin fill-slate-100"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -130,11 +130,11 @@ const StockSearch = () => {
       {isSearchModal && (
         <div>
           <div
-            className="absolute min-h-full min-w-full top-0 left-0 bg-slate-900 z-10 opacity-40"
+            className="absolute left-0 top-0 z-10 min-h-full min-w-full bg-slate-900 opacity-40"
             onClick={() => setIsSearchModal(false)}
           ></div>
           <div className="relative z-20">
-            <div className="flex mt-5 flex-col gap-2.5 bg-gray-700 text-sm rounded-lg w-full p-2.5 absolute">
+            <div className="absolute mt-5 flex w-full flex-col gap-2.5 rounded-lg bg-gray-700 p-2.5 text-sm">
               {acQuotes.map((acQuote) => (
                 <AutoCompleteCard
                   key={acQuote.symbol}

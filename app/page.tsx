@@ -8,7 +8,7 @@ import { API_URL } from "./utils/constants";
 
 const StockNotFound = () => {
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full">
+    <div className="flex h-full w-full flex-col items-center justify-center">
       <div className="mb-3 text-2xl font-medium">Stock Not Found</div>
       <div className="mb-3 text-lg">
         Please check the stock symbol and try again.
@@ -32,7 +32,7 @@ export default async function Home(searchParams: any) {
   const symbol: string = summary?.symbol;
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-8 bg-slate-900">
+    <main className="flex min-h-screen flex-col items-center justify-between bg-slate-900 p-8">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm">
         <StockSearch />
         {summary ? (
