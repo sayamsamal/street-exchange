@@ -38,12 +38,18 @@ export default async function Home(searchParams: any) {
         {summary ? (
           <>
             <StockPriceAction
-              shortName={summary.shortName}
-              symbol={summary.symbol}
-              price={summary.regularMarketPrice.fmt}
               currency={summary.currency}
-              change={summary.regularMarketChange.fmt}
-              changePercent={summary.regularMarketChangePercent.fmt}
+              regularMarketChange={summary.regularMarketChange}
+              regularMarketChangePercent={summary.regularMarketChangePercent}
+              regularMarketVolume={summary.regularMarketVolume}
+              exchange={summary.exchange}
+              symbol={summary.symbol}
+              marketState={summary.marketState}
+              regularMarketPrice={summary.regularMarketPrice}
+              priceHint={summary.priceHint}
+              quoteType={summary.quoteType}
+              regularMarketTime={summary.regularMarketTime}
+              shortName={summary.shortName}
             />
             <Suspense fallback={<StockChartLoader />}>
               <StockChart symbol={symbol} shortName={shortName} />

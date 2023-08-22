@@ -1,5 +1,6 @@
 // Static exports
 export const YAHOO_BASEURL: string = "https://query2.finance.yahoo.com";
+export const YAHOO_WS: string = "wss://streamer.finance.yahoo.com";
 export const COOKIE = process.env.COOKIE || "";
 export const CRUMB = process.env.CRUMB || "";
 export const USER_AGENT =

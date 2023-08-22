@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 
 interface autoCompleteCardProps {
   exchange: string;
@@ -30,11 +29,8 @@ interface Quote {
 
 const AutoCompleteCard = (props: autoCompleteCardProps) => {
   return (
-    <Link
-      href={{
-        pathname: "/",
-        query: { ticker: props.symbol },
-      }}
+    <a
+      href={`/?ticker=${props.symbol}`}
       onClick={() => props.setIsSearchModal(false)}
     >
       <div className="flex justify-between gap-10 rounded-lg bg-gray-600 px-5 py-3">
@@ -44,7 +40,7 @@ const AutoCompleteCard = (props: autoCompleteCardProps) => {
         </div>
         <div>{props.exchange}</div>
       </div>
-    </Link>
+    </a>
   );
 };
 
@@ -105,7 +101,7 @@ const StockSearch = () => {
             id="stock-search"
             className="w-full rounded-lg bg-gray-700 p-2.5 px-10 text-sm focus:outline-none focus:ring-1 focus:ring-sky-500"
             placeholder="Start typing for stocks"
-            onInput={(e) => {
+            onChange={(e) => {
               handleAutocomplete(e.currentTarget.value);
             }}
           />

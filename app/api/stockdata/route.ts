@@ -9,7 +9,7 @@ async function getStockData(
   const endpoint = new URL("/v7/finance/quote", YAHOO_BASEURL);
   endpoint.searchParams.set("symbols", symbols.join(","));
   endpoint.searchParams.set("crumb", crumb);
-  endpoint.searchParams.set("formatted", "true");
+  endpoint.searchParams.set("formatted", "false");
   const request = new Request(endpoint);
   request.headers.set("cookie", cookie);
   const res = await fetch(request);
